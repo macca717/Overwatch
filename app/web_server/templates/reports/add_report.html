@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', path='css/bulma-calendar.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static', path='css/bulma-switch.min.css')}}">
+
+{% endblock head %}
+{% block content %}
+<h3 class="title is-4">Report Seizure Event</h3>
+<hr>
+<div class="box">
+  <form action="{{url_for('seizure_reports')}}" method="post">
+    <div class="field">
+      <label class="label">Date & Time</label>
+      <input type="date" class="input" name="date-time">
+    </div>
+    <div class="field">
+      <label class="label">Duration In Minutes</label>
+      <input class="input" type="number" name="duration-minutes" min="0" max="120" value="5">
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="hidden" name="drug-administered" value="off">
+        <input type="checkbox" id="drug-administered" name="drug-administered" class="switch is-rounded">
+        <label for="drug-administered" class="checkbox">Rescue Drug Administered?</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="hidden" name="hospitalization-required" value="off">
+        <input type="checkbox" id="hospitalization-required" name="hospitalization-required" class="switch is-rounded">
+        <label for="hospitalization-required" class="checkbox">Hospitalization Required?</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <label class="label">Details</label>
+        <textarea class="textarea" name="details-text" placeholder="In bed, sleeping etc.."></textarea>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <button class="button is-info is-fullwidth">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{{url_for('static', path='js/bulma-calendar.min.js')}}"></script>
+<script>
+  let now = new Date();
+  const options = {
+    type: "datetime",
+    showHeader: false,
+    minuteSteps: 1,
+    dateFormat: "dd/MM/yyyy",
+    validateLabel: "OK",
+    showClearButton: false,
+    startDate: now,
+    startTime: now,
+    displayMode: "dialog"
+  };
+  const calendars = bulmaCalendar.attach('[type="date"]', options);
+</script>
+
+{% endblock scripts %}

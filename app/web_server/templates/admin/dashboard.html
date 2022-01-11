@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', path='css/bulma-switch.min.css')}}">
+<script defer src="https://cdn.plot.ly/plotly-2.0.0.min.js"></script>
+<script defer src="{{url_for('static', path='js/dashboard.js')}}" type="module"></script>
+{% endblock head %}
+
+
+{% block content %}
+
+<h4 class="title is-4">Main Process Metrics</h4>
+<hr>
+<div class="columns is-multiline">
+
+  <div class="column is-half">
+    <div class="box">
+      <div id="main-cpu-plot"></div>
+    </div>
+  </div>
+  <div class="column is-half">
+    <div class="box">
+      <div id="main-mem-plot"></div>
+    </div>
+  </div>
+</div>
+<h4 class="title is-4">Capture/Detection Process Metrics</h4>
+<hr>
+<div class="columns is-multiline">
+  <div class="column is-half">
+    <div class="box">
+      <div id="loop-time-plot"></div>
+    </div>
+  </div>
+  <div class="column is-half">
+    <div class="box">
+      <div id="cpu-time-plot"></div>
+    </div>
+  </div>
+  <div class="column is-half">
+    <div class="box">
+      <div id="mem-time-plot"></div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

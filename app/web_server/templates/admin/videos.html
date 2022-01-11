@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="title">Saved Video Files</h2>
+{% for video in ctx.videos %}
+
+<ul>
+  <li><a href="{{url_for('admin_video_download', video_file=video)}}">{{video}}</a></li>
+</ul>
+
+{% endfor %}
+
+{% endblock content %}

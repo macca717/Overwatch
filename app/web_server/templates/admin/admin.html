@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="title is-4">Administration</h3>
+<hr>
+<li>
+  <ul>
+    <a href="{{url_for('admin_dashboard')}}">Dashboard</a>
+  </ul>
+  <ul>
+    <a href="{{url_for('admin_videos')}}">Saved Videos</a>
+  </ul>
+</li>
+
+{% endblock content %}

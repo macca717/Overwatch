@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<style>
+  .box-title {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .box-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .amount-display {
+    font-size: 3rem;
+    color: var(--primary);
+  }
+</style>
+{% endblock styles %}
+
+{% block content %}
+<h2 class="title is-4">Quick Facts</h2>
+<hr>
+<div class="columns is-multiline">
+  <div class="column is-one-quarter-desktop is-one-third-tablet">
+    <div class="box stats-box">
+      <header>
+        <div class="box-title" id="last-12">Last 12 Months</div>
+      </header>
+      <section>
+        <div class="box-content">
+          <p class="amount-display">{{context.last_year_count}}</p>
+          {% if context.last_year_count == 1 %}
+          <p>Seizure</p>
+          {% else %}
+          <p>Seizures</p>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="column is-one-quarter-desktop is-one-third-tablet">
+    <div class="box stats-box">
+      <header>
+        <div class="box-title" id="average-seizure">Last 12 Months</div>
+      </header>
+      <section>
+        <div class="box-content">
+          <p class="amount-display">{{context.hospitalizations}}</p>
+          {% if context.hospitalizations == 1 %}
+          <p>Hospitalization</p>
+          {% else %}
+          <p>Hospitalizations</p>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="column is-one-quarter-desktop is-one-third-tablet">
+    <div class="box stats-box">
+      <header>
+        <div class="box-title" id="last-6">Last 6 Months</div>
+      </header>
+      <section>
+        <div class="box-content">
+          <p class="amount-display">{{context.last_six_months_count}}</p>
+          {% if context.last_six_months_count == 1 %}
+          <p>Seizure</p>
+          {% else %}
+          <p>Seizures</p>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="column is-one-quarter-desktop is-one-third-tablet">
+    <div class="box stats-box">
+      <header>
+        <div class="box-title" id="seizure-free">Seizure Free</div>
+      </header>
+      <section>
+        <div class="box-content">
+          {% if context.days_since_last_seizure is none %}
+          <p class="amount-display">N/A</p>
+          {% else %}
+          <p class="amount-display">{{context.days_since_last_seizure}}</p>
+          {% endif %}
+          {% if context.days_since_last_seizure == 1 %}
+          <p>Day</p>
+          {% else %}
+          <p>Days</p>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="column is-one-quarter-desktop is-one-third-tablet">
+    <div class="box stats-box">
+      <header>
+        <div class="box-title" id="longest-seizure">Longest Seizure</div>
+      </header>
+      <section>
+        <div class="box-content">
+          <p class="amount-display">{{context.longest}}</p>
+          <p>Minutes</p>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="column is-one-quarter-desktop is-one-third-tablet">
+    <div class="box stats-box">
+      <header>
+        <div class="box-title" id="average-seizure">Average Seizure</div>
+      </header>
+      <section>
+        <div class="box-content">
+          <p class="amount-display">{{"%.1f"|format(context.average_length)}}</p>
+          <p>Minutes</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<div hidden>
+  <!-- Not implemented yet -->
+  <h2 class="title is-4">Seizures In The Last 12 Months</h2>
+  <hr>
+  <div class="box" style="min-height:24rem"></div>
+</div>
+{% endblock content %}

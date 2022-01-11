@@ -1,0 +1,51 @@
+[tool.poetry]
+authors = ["macca717 <macca717@users.noreply.github.com>"]
+description = "Seizure Detection and Alerting System"
+name = "Overwatch"
+version = "1.0.0"
+
+[tool.poetry.dependencies]
+Jinja2 = "^3.0.1"
+SQLAlchemy = "^1.4.26"
+aiofiles = "^0.7.0"
+aiohttp = "^3.7.4"
+alembic = "^1.7.4"
+apprise = "^0.9.6"
+arrow = "^1.1.1"
+databases = {extras = ["sqlite"], version = "^0.5.3"}
+finite-state-machine = "^0.5.0"
+itsdangerous = "^2.0.1"
+loguru = "^0.5.3"
+numpy = "^1.21.2"
+opencv-python-headless = "^4.5.3"
+orjson = "^3.6.3"
+psutil = "^5.8.0"
+pydantic = "^1.8.2"
+python = ">=3.9,<3.11"
+python-multipart = "^0.0.5"
+starlette = "^0.16.0"
+toml = "^0.10.2"
+uvicorn = "^0.15.0"
+uvicorn-loguru-integration = "^0.2.0"
+uvloop = "^0.16.0"
+websockets = "^9.1"
+
+[tool.poetry.dev-dependencies]
+black = "^21.8b0"
+markdown2 = "^2.4.1"
+mypy = "^0.910"
+pyinstrument = "^4.0.3"
+pylint = "^2.10.2"
+pytest = "^6.2.5"
+pytest-asyncio = "^0.15.1"
+pytest-instafail = "^0.4.2"
+pytest-repeat = "^0.9.1"
+pytest-sugar = "^0.9.4"
+pytest-timeout = "^1.4.2"
+pytest_check = "^1.0.2"
+requests = "^2.26.0"
+types-toml = "^0.1.5"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]

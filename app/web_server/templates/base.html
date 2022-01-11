@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link async rel="stylesheet" href="{{url_for('static', path='css/bulma.min.css')}}">
+  {% block head %}
+  {% endblock head %}
+  <title>{{title}}</title>
+  <style>
+    :root {
+      --primary: #036635;
+      --primary-bg: rgb(247, 247, 247);
+    }
+
+    body {
+      line-height: 1.71429;
+      background-color: var(--primary-bg);
+    }
+
+    .title {
+      color: var(--primary);
+    }
+
+    .navbar {
+      background-color: black;
+    }
+
+    .navbar-burger {
+      color: var(--primary-bg);
+    }
+
+    .navbar-burger:hover {
+      color: var(--primary);
+
+    }
+
+    .navbar-menu.is-active {
+      background-color: black;
+    }
+
+    a.navbar-item {
+      color: var(--primary-bg);
+    }
+
+    a.navbar-item:hover {
+      color: var(--primary);
+    }
+
+    .page-ribbon {
+      height: 0.50rem;
+      background-color: var(--primary);
+    }
+
+    .main-container {
+      max-width: 1024px;
+      min-height: 90vh;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .footer {
+      background-color: lightgray;
+      min-height: 5rem;
+    }
+  </style>
+
+  </style>
+  {% block styles %}
+  {% endblock styles %}
+</head>
+
+<body>
+  {% include "navbar.html" %}
+  <div class="page-ribbon"></div>
+  {% for flash in get_flash_messages(request) %}
+  <div class="flash-message" data-message="{{flash.message}}" data-category="{{flash.category}}"></div>
+  {% endfor %}
+  <div class="main-container">
+    {% block content %}
+    {% endblock content %}
+  </div>
+  <footer class="footer">
+    <div class="content has-text-centered">
+    </div>
+  </footer>
+  <script src="{{url_for('static', path='js/bulma-toast.min.js')}}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      if ($navbarBurgers.length > 0) {
+        $navbarBurgers.forEach(el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+          });
+        });
+      }
+    });
+  </script>
+  <script>
+    bulmaToast.setDefaults({
+      duration: 2500,
+      position: 'bottom-right',
+      closeOnClick: false,
+    });
+    document.querySelectorAll("div.flash-message").forEach(el => {
+      bulmaToast.toast({
+        message: el.dataset.message,
+        type: el.dataset.category,
+      });
+    });
+  </script>
+  {% block scripts %}
+  {% endblock scripts %}
+</body>
+
+</html>

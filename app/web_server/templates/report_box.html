@@ -1,0 +1,48 @@
+<div class="card">
+  <header class="card-header" style="background-color: var(--primary);">
+    <p class="card-header-title is-centered" style="color: var(--primary-bg);">
+      Event {{report.id}}
+    </p>
+  </header>
+  <div class="card-content" style="min-height: 25rem;">
+    <div class="content">
+      <p class="has-text-weight-medium">Date: <span class="has-text-weight-light">{{report.occurance_date.strftime('%d
+          %b %Y')}}</span></p>
+      <p class="has-text-weight-medium">Time: <span
+          class="has-text-weight-light">{{report.occurance_date.strftime('%H:%M')}}</span></p>
+      <p class="has-text-weight-medium">Duration: <span class="has-text-weight-light">{{report.duration_minutes}}
+          minutes</span></p>
+      {% if report.drugs_administered %}
+      <p class="has-text-weight-medium">Rescue Drug: <span class="has-text-weight-light">Yes</span></p>
+      {% else %}
+      <p class="has-text-weight-medium">Rescue Drug: <span class="has-text-weight-light">No</span></p>
+      {% endif %}
+      {% if report.hospitalization_required %}
+      <p class="has-text-weight-medium">Hospitalization: <span class="has-text-weight-light">Yes</span></p>
+      {% else %}
+      <p class="has-text-weight-medium">Hospitalization: <span class="has-text-weight-light">No</span></p>
+      {% endif %}
+      <hr>
+      {% if report.details_text %}
+      <p class="has-text-weight-light">{{report.details_text}}</p>
+      {% else %}
+      <p class="has-text-weight-light"><em>No details given</em></p>
+      {% endif %}
+    </div>
+  </div>
+  <footer class="card-footer">
+    <button class="button card-footer-item edit-report-btn" data-report-id="{{report.id}}"
+      data-report-date="{{report.occurance_date.isoformat()}}" data-report-duration="{{report.duration_minutes}}"
+      data-report-text="{{report.details_text}}" data-report-drugs-administered="{{report.drugs_administered}}"
+      data-report-hospitalization-required="{{report.hospitalization_required}}">
+      <span class="icon">
+        <img src="{{url_for('static', path='images/edit-regular.svg')}}" alt="Edit">
+      </span>
+    </button>
+    <button class="button card-footer-item delete-report-btn" data-report-id="{{report.id}}">
+      <span class="icon">
+        <img class="delete-icon" src="{{url_for('static', path='images/trash-alt-regular.svg')}}" alt="Edit">
+      </span>
+    </button>
+  </footer>
+</div>

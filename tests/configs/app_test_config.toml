@@ -1,0 +1,25 @@
+[server]
+host_name = "localhost"
+video_save_dir = "/tmp"
+webserver_port = 8004
+websocket_port = 7777
+
+[alerting]
+alarm_hysteresis_s = 60
+alert_time_s = 180
+end_time = "19:21"
+initial_alarm_duration_m = 30
+min_movement_s = 10
+start_time = "19:22"
+
+[camera]
+url = "http://192.168.1.1/video.mjpeg"
+
+[processing]
+avg_weighting = 0.5 
+dilation_iterations = 0 # 0
+fixed_lvl_threshold = 5 
+fps = 2 
+gauss_ksize = 7 # 5
+pixel_threshold_hi = 9000 
+pixel_threshold_lo = 15

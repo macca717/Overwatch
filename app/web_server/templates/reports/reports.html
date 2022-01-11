@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', path='css/bulma-calendar.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static', path='css/bulma-switch.min.css')}}">
+{% endblock head %}
+{% block styles %}
+<style>
+  .delete-icon {
+    max-height: 90%;
+  }
+</style>
+{% endblock styles %}
+
+{% block content %}
+
+<h3 class="title is-4">Reports</h3>
+<hr>
+<div class="columns is-multiline">
+  {% for report in ctx.reports %}
+  <div class="column is-4">
+    {% include "report_box.html" %}
+  </div>
+  {% endfor %}
+</div>
+
+<div class="delete-modal modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+      <p class="modal-card-title has-text-centered mb-4 "></p>
+      <div class="field is-grouped is-grouped-centered">
+        <p class="control">
+          <button class="button confirm-btn">Yes</button>
+        </p>
+        <p class="control">
+          <button class="button is-warning cancel-btn">No</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="edit-modal modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+      <p class="modal-card-title has-text-centered"></p>
+      <form action="{{url_for('update_seizure_report')}}" method="POST">
+        <input type="hidden" id="id" name="id">
+        <div class="field">
+          <label class="label">Date & Time</label>
+          <input type="date" class="input" name="date-time">
+        </div>
+        <div class="field">
+          <label class="label">Duration In Minutes</label>
+          <input class="input" type="number" id="duration" name="duration-minutes" min="0" max="120">
+        </div>
+        <div class="field">
+          <div class="control">
+            <input type="hidden" name="drug-administered" value="off">
+            <input type="checkbox" id="drugs" name="drug-administered" class="switch is-rounded">
+            <label for="drugs" class="checkbox"> Rescue Drug
+              Administered?</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <input type="hidden" name="hospitalization-required" value="off">
+            <input type="checkbox" id="hospital" name="hospitalization-required" class="switch is-rounded">
+            <label for="hospital" class="checkbox"> Hospitalization Required?</label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Details</label>
+          <div class="control">
+            <textarea class="textarea" id="details" name="details-text"></textarea>
+          </div>
+        </div>
+        <div class="field is-grouped is-grouped-centered">
+          <div class="control">
+            <button class="button">Update</button>
+            <button class="button is-warning cancel-btn">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="{{url_for('static', path='js/bulma-calendar.min.js')}}"></script>
+<script>
+  const editButtons = document.querySelectorAll(".button.edit-report-btn");
+  editButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const modal = document.querySelector(".edit-modal");
+      modal.classList.add("is-active");
+      modal.querySelector(".modal-card-title").innerHTML = `Edit Event ${btn.dataset.reportId}`
+      const reportDate = new Date(btn.dataset.reportDate);
+      const options = {
+        type: "datetime",
+        showHeader: false,
+        minuteSteps: 1,
+        dateFormat: "dd/MM/yyyy",
+        validateLabel: "OK",
+        showClearButton: false,
+        startDate: reportDate,
+        startTime: reportDate,
+        displayMode: "dialog"
+      };
+      const calendars = bulmaCalendar.attach('[type="date"]', options);
+
+      const form = modal.querySelector("form");
+      form.querySelector("#id").value = btn.dataset.reportId;
+      form.querySelector("#details").value = btn.dataset.reportText;
+      if (btn.dataset.reportDrugsAdministered === "True") {
+        form.querySelector("#drugs").checked = true;
+      } else {
+        form.querySelector("#drugs").checked = false;
+      }
+      if (btn.dataset.reportHospitalizationRequired === "True") {
+        form.querySelector("#hospital").checked = true;
+      } else {
+        form.querySelector("#hospital").checked = false;
+      }
+      form.querySelector("#duration").value = btn.dataset.reportDuration;
+      modal.querySelector(".cancel-btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.classList.remove("is-active");
+      });
+
+    });
+  });
+  const deleteButtons = document.querySelectorAll(".button.delete-report-btn");
+  deleteButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const modal = document.querySelector(".delete-modal");
+      modal.classList.add("is-active");
+      modal.querySelector(".modal-card-title").innerHTML = `Delete Event ${btn.dataset.reportId}?`
+      modal.querySelector(".cancel-btn").addEventListener("click", () => {
+        modal.classList.remove("is-active")
+      });
+      const confirmBtn = modal.querySelector(".confirm-btn")
+      confirmBtn.addEventListener("click", () => {
+        confirmBtn.classList.add("is-loading");
+        window.location.href = `/reports/delete/${btn.dataset.reportId}`;
+      });
+    });
+  });
+</script>
+{% endblock scripts %}
