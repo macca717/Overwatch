@@ -1,6 +1,6 @@
 # Overwatch Seizure Detection and Alerting System
 
-Final project for my Bachelor of Imformation Technology.
+Final project for my Bachelor of Information Technology.
 
 [Overview](./docs/overview.md)
 
