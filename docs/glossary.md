@@ -7,6 +7,7 @@
 | API      | Application Programming Interface.               |
 | COTS| Commercial off the shelve. |
 | CPU | Central Processimng Unit.         |
+| FPS | Frames Per Second. |
 | HTTP          | Hypertext Transfer Protocol.       |
 | IP        | Internet Protocol.   |
 | MJPEG        | Motion JPEG video format.   |

@@ -1,7 +1,7 @@
 # API
 
 ## Websocket API
-The application employs a websocket server to enable communication and data exchange with clients. Some endpoints are implemented as HTTP for ease of use, these require an HTTP Get request rather than a websockert connnection.
+The application employs a websocket server to enable communication and data exchange with clients. Some endpoints are implemented as HTTP for ease of use, these require an HTTP *Get* request rather than a websocket connnection.
 
 | Name           | Endpoint      | Data Type | Description                                          |
 | -------------- |:-------------:|:---------:| ---------------------------------------------------- |

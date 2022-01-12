@@ -40,8 +40,11 @@ The function of the main process is to:
 2. Manage the detection and web server processes, restarting them if required (watchdog).
 3. Allow real time video and data transfer to clients via a websocket connection.
 4. Maintain the state of the appication and raise external alerts when required. 
+5. Save a video of the last three minutes of capturing when an alert is raised (For future viewing/analysis).
 
-## Detection Logic
+## Detection Process
+
+The purpose of the detection process is to process incoming video frames, detect motion and re-encode the video as MJPEG (640x480).
 
 The logic of the detection algorithm is currently based on the change of pixels between captured video frames. The change in pixels between frames is stored and if the change exceeds a threshold for three minutes then an alert is triggered. Pre-processing is applied to each frame in the form of grey scaling and noise reduction (Guassian blurring) to reduce the rate of false alerts.
 
@@ -52,7 +55,6 @@ The logic of the detection algorithm is currently based on the change of pixels 
 The purpose of the web server process is to serve web pages to the client to:
 1. Allow control of the application.
 2. View the captured video in real time.
-3. Save a video of the last three minutes of capturing when an alert is raised (For future viewing/analysis).
 3. View, add and edit records of seizure events.
 
 
@@ -62,4 +64,4 @@ The purpose of the database is to store the recorded seizure event information
 
 ## IP Camera
 
-The purppose of the IP camera is capture video for analysis. The camera must be capable of capturing video in low light conditions.
+The purpose of the IP camera is capture video for analysis. The camera must be capable of capturing video in low light conditions.

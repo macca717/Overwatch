@@ -31,7 +31,7 @@ docker run \
 If the included siren alerter is implemented via docker the following steps must be performed:
 1. Generate a SSH key pair
 2. Add the generated public key to the host computer/user *authorized_keys* file
-3. Ensure the path to the generated SSH private key is correct in the configuration file. Further imformation regarding SSH keys can be found [Here](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server)
+3. Ensure the path to the generated SSH private key is correct in the configuration file. Further imformation regarding SSH keys can be found [here](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server)
 4. The host must have [aplay](https://linux.die.net/man/1/aplay) installed and the sound file *app/alert_plugins/common/siren.wav* must be copied to the host users home directory.
 
 The application can also be run via docker-compose, a sample "docker-compose.yaml" is shown below.

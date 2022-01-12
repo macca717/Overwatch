@@ -2,7 +2,7 @@
 
 ## Overview
 
-The application employs a plugin system to configure user defined alerters that raise an alert when motion is detected. The plugins are written in python and must be located in the "app/alert_plugins" directory. The user defined alerter must derive from the base alerter found in "app/alert_plugins/base.py". Custom logic to run when an alaert is raised is implemented in the *run* method of the custom alerter.
+The application employs a plugin system to configure user defined alerters that raise an alert when motion is detected. The plugins are written in python and must be located in the "app/alert_plugins" directory. The user defined alerter must derive from the base alerter found in "app/alert_plugins/base.py". Custom logic to run when an alert is raised is implemented in the *run* method of the custom alerter.
 
 Alerter plugins are run in a separate thread to avoid blocking the main process. The "base.py" file also imports a "retry" decorator to retry alert logic (Useful for external API calls and temporary network issues). A minimal alerter class can be found below.
 
@@ -62,4 +62,4 @@ class MyAlerter(AlerterPlugin):
 
 ```
 
-THe application uses the third party library [Apprise](https://pypi.org/project/apprise/) for communicating with external services. User defined plugins can utilise this library if required.
+The application uses the third party library [Apprise](https://pypi.org/project/apprise/) for communicating with external services. User defined plugins can utilise this library if required.

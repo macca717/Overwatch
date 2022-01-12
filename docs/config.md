@@ -72,7 +72,7 @@ test_grp = true
 ## Server Options
 
 #### host_name 
-Hostname of the websocket/web server.
+Host name of the websocket/web server.
 #### video_save_dir
 Directory to store captured alert videos.
 
@@ -133,9 +133,9 @@ Low cut off for bandpass filter in pixels.
 ## Siren
 
 #### enabled
-A boolen flag indicating whether or not the siren is enabled.
+A boolean flag indicating whether or not the siren is enabled.
 #### ssh_host
-IP/hostname of the host computer
+IP/host name of the host computer
 
 #### ssh_key_path
 Relative path to the SSH key file
@@ -144,7 +144,7 @@ Relative path to the SSH key file
 User name of the host account
 
 #### test_grp
-A boolen flag indicating whether or not the siren is in the test group (Will sound when a system test is initiated by the user).
+A boolean flag indicating whether or not the siren is in the test group (Will sound when a system test is initiated by the user).
 
 ## Telegram
 
@@ -156,7 +156,7 @@ API key of Telegram bot, see [here](https://github.com/caronc/apprise/wiki/Notif
 List of recipient chat IDs
 
 #### enabled
-A boolen flag indicating whether or not the Telegram alerter is enabled.
+A boolean flag indicating whether or not the Telegram alerter is enabled.
 
 #### test_grp
-A boolen flag indicating whether or not the Telegram alerter is in the test group (Will message when a system test is initiated by the user).
+A boolean flag indicating whether or not the Telegram alerter is in the test group (Will message when a system test is initiated by the user).
