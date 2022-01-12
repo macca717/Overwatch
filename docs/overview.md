@@ -39,8 +39,8 @@ The function of the main process is to:
 1. Load the configuration from the configuration file and command line input.
 2. Manage the detection and web server processes, restarting them if required (watchdog).
 3. Allow real time video and data transfer to clients via a websocket connection.
-4. Maintain the state of the appication and raise external alerts when required. 
-5. Save a video of the last three minutes of capturing when an alert is raised (For future viewing/analysis).
+4. Maintain the state of the application and raise external alerts when required. 
+5. Save a video of the last three minutes of capturing when an alert is raised (for future viewing/analysis).
 
 ## Detection Process
 

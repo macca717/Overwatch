@@ -28,7 +28,7 @@ The server broadcasts a status heartbeat every second, or on a server state chan
 | ------------------ | ------------------------------------------------------- |:-----:|
 | timeStamp          | Unix timestamp since the epoch                          | s     |
 | state              | Current system state("on", "off", "alarm", "silenced")  |       |
-| initialAlarm       | Seconds since initial alert was raised                  | s     |
+| initialAlarm       | Unix timestamp since initial alert was raised                  | s     |
 | silencedTill       | Unix timestamp till silence lifts, else null            | s     |
 
 

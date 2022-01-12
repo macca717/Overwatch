@@ -8,7 +8,7 @@ Alerter plugins are run in a separate thread to avoid blocking the main process.
 
 ## Configuration
 Plugin configuration is loaded from the main configuration file ("config.toml"), the configuration is stored in the section "[alerters.*name*]". The configuration must contain the following keys:
-- "test-grp" (Boolean, used to indicate if the plugin will raise an alert during a test)
+- "test_grp" (Boolean, used to indicate if the plugin will raise an alert during a test)
 - "enabled" (Boolean, used to indicate if the plugin is enabled)
 
 Further user defined keys can be added as neccessary, these values can be accessed via the custom class in the "config" dictionary. The key for the alerter config is the name defined in the toml configuration section "[alerters.*name*]"
