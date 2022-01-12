@@ -1,6 +1,6 @@
 # Configuration
 
-The application utilizes a combination of config file loading and command line parsing for configuration.
+The application utilizes a combination of config file loading and command line parsing for configuration. The web server requires an environment file (".env") located in the root directory for configuration.
 
 ## Command Line Flags
 ```
@@ -160,3 +160,22 @@ A boolean flag indicating whether or not the Telegram alerter is enabled.
 
 #### test_grp
 A boolean flag indicating whether or not the Telegram alerter is in the test group (Will message when a system test is initiated by the user).
+
+
+## Web Server Env File
+A sample .env is provided below:
+
+``` bash
+DEBUG=False
+SECRET_KEY=<secret>
+ALLOWED_HOSTS=*
+DATABASE_URL=sqlite:///app.db
+
+```
+
+| Key | Description |
+| ---- | ---------- |
+| DEBUG | Boolean indicating if debug mode is active |
+| SECRET_KEY | Secret generated string |
+| ALLOWED_HOSTS | List of allowed hosts |
+| DATABASE_URL | Path to database |

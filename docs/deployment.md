@@ -9,6 +9,7 @@ docker build -t overwatch .
 To deploy the application in a docker container:
 - The timezone of the container must be set for the correct functioning of the scheduler.
 - The config file and video save directory must be mounted.
+- The environment file must be mounted.
 - The common alerter plugin directory must be mounted.
 - The application ports must be forwarded to the host.
 - The log level may be specified (error is the default).
@@ -17,6 +18,7 @@ To deploy the application in a docker container:
 ```bash
 docker run \
     -e TZ=Pacific/Auckland \
+    -v "$(pwd)"/app.db:/app.db \
     -v "$(pwd)"/config.toml:/config.toml \
     -v "$(pwd)"/saves/:/saves \
     -v "$(pwd)"/.env/:/.env \
@@ -34,6 +36,16 @@ If the included siren alerter is implemented via docker the following steps must
 3. Ensure the path to the generated SSH private key is correct in the configuration file. Further imformation regarding SSH keys can be found [here](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server)
 4. The host must have [aplay](https://linux.die.net/man/1/aplay) installed and the sound file *app/alert_plugins/common/siren.wav* must be copied to the host users home directory.
 
+Once the container is deployed the database must be created.
+1. Attach to the running application container
+``` bash
+docker exec -it <container name>  /bin/bash
+```
+2. Perform the database initialisation/update
+``` bash
+alembic upgrade head
+```
+
 The application can also be run via docker-compose, a sample "docker-compose.yaml" is shown below.
 
 
@@ -49,7 +61,7 @@ services:
       - "9001:9001"
       - "9876:9876"
     volumes:
-      - ./test.db:/test.db
+      - ./app.db:/app.db
       - ./saves:/saves/
       - ./config.toml:/config.toml
       - ./.env:/.env
