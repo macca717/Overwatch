@@ -11,3 +11,5 @@ Final project for my Bachelor of Information Technology.
 [Plugins](./docs/plugins.md)
 
 [API](./docs/API.md)
+
+[User Guide](./docs/user_guide.md)
