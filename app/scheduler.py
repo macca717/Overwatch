@@ -55,20 +55,14 @@ async def run_scheduler_task(config: AppConfig, publisher: Publisher):
     while True:
         if not test_mode:  # Disable the scheduling if in test mode
             now = arrow.now()
-            if check_if_scheduled(now, time_data.start, time_data.end):  # scheduled
-                if capture_stopped:  # start
+            if check_if_scheduled(now, time_data.start, time_data.end):
+                if capture_stopped:
                     logger.debug("Capture scheduled, sending start event")
                     capture_stopped = False
-                    # publisher.send_message(
-                    #     Topic.SCHEDULER_CAPTURE_STOP, Event(data=capture_stopped)
-                    # )
-            else:  # Not scheduled
-                if not capture_stopped:  # stop
+            else:
+                if not capture_stopped:
                     logger.debug("Capture not scheduled, sending stop event")
                     capture_stopped = True
-                    # publisher.send_message(
-                    #     Topic.SCHEDULER_CAPTURE_STOP, Event(data=capture_stopped)
-                    # )
             publisher.send_message(
                 Topic.SCHEDULER_CAPTURE_STOP, Event(data=capture_stopped)
             )
