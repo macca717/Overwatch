@@ -70,11 +70,10 @@ class Alerter:
             )
 
     def _status_update_handler(self, event: Event):
-        state: State = cast(SystemStatus, event.data).state
-        if self._system_state != state:
-            self._system_state = state
-            if self._system_state == State.ON:
-                self._re_enable_all_alerters()
+        new_state: State = cast(SystemStatus, event.data).state
+        if self._system_state == State.OFF and new_state == State.ON:
+            self._re_enable_all_alerters()
+        self._system_state = new_state
 
     async def run(self):
         while True:
