@@ -1,5 +1,5 @@
 ---
-title: Overwatch Seizure Detector
+title: Overwatch Seizure Detector Developer Notes
 toc: true
 ---
 
@@ -40,13 +40,13 @@ The function of the main process is to:
 2. Manage the detection and web server processes, restarting them if required (watchdog).
 3. Allow real time video and data transfer to clients via a websocket connection.
 4. Maintain the state of the application and raise external alerts when required. 
-5. Save a video of the last three minutes of capturing when an alert is raised (for future viewing/analysis).
+5. Save a video of the last five minutes of capturing when an alert is raised (for future viewing/analysis).
 
 ## Detection Process
 
-The purpose of the detection process is to process incoming video frames, detect motion and re-encode the video as MJPEG (640x480).
+The purpose of the detection process is to process incoming video frames, detect motion and re-encode the video as MJPEG (640px X 480px).
 
-The logic of the detection algorithm is currently based on the change of pixels between captured video frames. The change in pixels between frames is stored and if the change exceeds a threshold for three minutes then an alert is triggered. Pre-processing is applied to each frame in the form of grey scaling and noise reduction (Guassian blurring) to reduce the rate of false alerts.
+The logic of the detection algorithm is currently based on the change of pixels between captured video frames. The change in pixels between frames is stored and if the change exceeds a threshold for five minutes then an alert is triggered. Pre-processing is applied to each frame in the form of grey scaling and noise reduction (Guassian blurring) to reduce the rate of false alerts.
 
 ![Detection](./images/detection_process_logic.png)
 

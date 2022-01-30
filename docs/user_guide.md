@@ -2,7 +2,7 @@
 
 ## Overview
 
-This application is designed to detect small movements of a subject in bed during sleeping hours that could be an epilectic seizure. This is achieved by viewing the subject via a web camera and analysing the video for movement. If the detected movement exceeds three (3) minutes in length then an audible alarm is sounded from the computer running the application and a message is sent via the Telegram messaging service. The application is controlled via a tablet or phone running a modern web browser.
+This application is designed to detect small movements of a subject in bed during sleeping hours that could be an epilectic seizure. This is achieved by viewing the subject via a web camera and analysing the video for movement. If the detected movement exceeds five (5) minutes in length then an audible alarm is sounded from the computer running the application and a message is sent via the Telegram messaging service. The application is controlled via a tablet or phone running a modern web browser.
 The application can also be used to keep track of seizure events by allowing them to be recorded and viewed later. This data is used to provide an overview of seizure activity such as frequency and average duration.
 
 
@@ -25,7 +25,7 @@ The detection and alerting can be controlled from the *App* page as displayed be
 
 ![](./images/app_page.png)
 
-The application page is divide into four panels:
+The application page is divided into four panels:
 ### Camera
 This panel primarily displays a camera view and an overlay indicating the real time status of the system. If the *Live video* switch is off the camera view will refresh every second with a snapshot view, else the view will display real time video. Below is an composite image of all the status symbols that can be displayed by the application.
 
@@ -75,7 +75,7 @@ This panel allows individual alerters to be selected/de-selected. A deselected a
 ## Seizure Events
 
 ### Reporting an Event
-Seizure events can be reported via the *Report Event* link in the main menu bar as displayed below. Once submitted the report will be saved and the data used to update the statistics displayed on the main page.
+Seizure events can be reported via the *Report Event* link in the main menu bar as displayed below. Once submitted the report will be saved and the data used to update the statistics displayed on the home page.
 
 ![](./images/report.png)
 

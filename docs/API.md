@@ -65,7 +65,7 @@ The requested current application configuration is returned in the format below.
     "alerting": {
         "start_time": "16:55",
         "end_time": "16:54",
-        "alert_time_s": 45,
+        "alert_time_s": 360,
         "min_movement_s": 2,
         "initial_alarm_duration_m": 30,
         "alarm_hysteresis_s": 60
@@ -150,7 +150,7 @@ Command to test alert plugins, a list of excluded plugin names can be supplied, 
 
 #### Configuration Update
 
-Comamnd to update the applications running configuration.
+Command to update the applications running configuration.
 
 ``` json
 {

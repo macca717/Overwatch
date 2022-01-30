@@ -47,7 +47,7 @@ pixel_threshold_lo = 15
 
 [alerting]
 alarm_hysteresis_s = 60
-alert_time_s = 180
+alert_time_s = 300
 end_time = "18:30"
 initial_alarm_duration_m = 30
 min_movement_s = 10
@@ -98,7 +98,7 @@ Max duration of time in minutes to display a timer since the first alert. Used t
 
 
 #### min_movement_s
-Minimum amount of time in seconds between detected movement. If motion is detected outside this limit then the *alert_time_s* timer is reset.
+Minimum amount of time in seconds between detected movement. If motion is detected outside this limit then the *alert_time_s* timer is reset (Used to guard against lost frames/missed motion detection).
 
 #### start_time
 Time of day for detection to start (24hr).
@@ -126,9 +126,9 @@ Kernal size of the guassian blurring, must be odd. The  higher the value the mor
 
 
 #### pixel_threshold_hi
-High cut off for bandpass filter in pixels.
+High cut off for bandpass filter in pixels (Used to adjust sensitivity).
 #### pixel_threshold_lo
-Low cut off for bandpass filter in pixels.
+Low cut off for bandpass filter in pixels (Used to adjust sensitivity).
 
 ## Siren
 
